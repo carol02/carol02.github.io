@@ -45,13 +45,5 @@ var projects = [
 			endTime:"至今",
 			projectLabel:["html","css"],
 			projectThumbnail:"images/icon/project-4.png"
-		},{
-			projectName:"仿响应式静态网页",
-			projectWebsite:"demo/case/响应式/xiang.html",
-		    startTime:"2016.06.01",
-			endTime:"至今",
-			projectExplain:"响应式静态页面",
-			projectLabel:["html","css"],
-			projectThumbnail:"images/icon/project.png"
 		}
 ]
