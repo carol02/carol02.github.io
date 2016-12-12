@@ -614,8 +614,8 @@ footer .fot{
 	.top-1{
 		width: 60%;
 		margin: 0 auto;
-		height: 50px;
-		padding-left: 172px;
+		height: 3.125rem;
+		padding-left: 10.75rem;
 		position: relative;
 		}
 	.top-lf{
@@ -623,10 +623,10 @@ footer .fot{
 		}
 	.top-1 .bei span{
 		display: block;
-		width: 56px;
-		height: 50px;
+		width: 3.5rem;
+		height: 3.125rem;
 		background: url(../img/1.gif) no-repeat;
-		background-position: -155px 0;
+		background-position: -9.6875rem 0;
 	}
 	.top-rt{
 		position: absolute;
@@ -641,31 +641,31 @@ nav .nav{
 	margin: 0 auto;
 }
 .section{
-	width: 882px;
+	width: 55.125rem;
 	margin: 0 auto;
 }
 .page1{
 	width: 75%;
-	margin: 45px auto 40px;
+	margin:2.8125rem auto 2.5rem;
 }
 body .section .cd3{
-	margin-right: 20px;
+	margin-right: 1.25rem;
 }
 body .section .cd2{
-	margin-right: -20px;
+	margin-right: -1.25rem;
 }
 .recommend{
 	display: none;
 }
 .recommend1{
 	width: 75%;
-	height: 304px;
+	height: 19.0rem;
 	background: white;
-	margin: 0 auto 40px;
-	box-shadow: 0 0px 5px 0 #c9c9c9;
+	margin: 0 auto 2.5rem;
+	box-shadow: 0 0px 0.3125rem 0 #c9c9c9;
 } 
 .recommend1 li{
-	margin-bottom: 35px;
+	margin-bottom: 2.1875rem;
 }
 .recommend1 ul .ps{
 	margin-right: 0;
@@ -681,54 +681,54 @@ footer .fot{
 .top-1{
 		width: 50%;
 		margin: 0 auto;
-		height: 50px;
-		padding-left: 172px;
+		height: 3.125rem;
+		padding-left: 10.75rem;
 		position: relative;
 		}
 nav .nav{
-	width: 582px;
+	width: 36.375rem;
 	margin: 0 auto;
 }
 .section{
-	width: 582px;
+	width: 36.375rem;
 	margin: 0 auto;
 }
 body .section .cd2{
-	margin-right: 20px;
+	margin-right: 1.25rem;
 }
 body .section .cd4{
 	margin-right: 0px;
 }
 .page1{
-	width: 582px;
-	margin: 45px auto 40px;
+	width: 36.375rem;
+	margin: 2.8125rem auto 2.5rem;
 }
 .recommend1{
-	width: 581px;
-	height: 304px;
+	width: 36.3125rem;
+	height: 19.0rem;
 	background: white;
-	margin: 0 auto 40px;
-	box-shadow: 0 0px 5px 0 #c9c9c9;
+	margin: 0 auto 2.5rem;
+	box-shadow: 0 0px 0.3125rem 0 #c9c9c9;
 } 
 .recommend1 ul .ps{
-	margin-right: 25px;
+	margin-right: 1.5625rem;
 }
 .recommend1 ul .manmiao,.recommend1 ul .huixiang{
 	margin-right: 0px;
 }
 footer .fot{
-	width: 581px;
+	width: 36.3125rem;
 	margin: 0 auto;
 	position: relative;
 }
 .hy img{
 	position: absolute;
-	top: 35px;
+	top: 2.1875rem;
 	right: 0;
 }
 .fot-fl{
 	display: block;
-	width: 484px;
+	width: 30.25rem;
 }
 }
 @media screen and (max-width:578px){
@@ -737,16 +737,16 @@ footer .fot{
 	width: 101%;
 }
 .top-1{
-		width: 578px;
+		width: 36.125rem;
 		margin: 0;
-		height: 50px;
-		padding-left: 172px;
+		height: 3.125rem;
+		padding-left: 10.75rem;
 		position: relative;
 		}
 .top-rt{
 		position: absolute;
 		top: 0;
-		right: 170px;
+		right: 10.625rem;
 	}
 nav{
 	width: 100%;
@@ -756,49 +756,49 @@ nav .nav{
 	margin: 0 auto;
 }
 nav .nav{
-	width: 578px;
+	width: 36.125rem;
 	margin: 0 auto;
 }
 .section{
-	width: 582px;
+	width: 36.375rem;
 	margin: 0 auto;
 }
 body .section .cd2{
-	margin-right: 20px;
+	margin-right: 1.25rem;
 }
 body .section .cd4{
 	margin-right: 0px;
 }
 .page1{
-	width: 582px;
-	margin: 45px auto 40px;
+	width: 36.375rem;
+	margin: 2.8125rem auto 2.5rem;
 }
 .recommend1{
-	width: 582;
-	height: 304px;
+	width: 36.375rem;
+	height: 19.0rem;
 	background: white;
-	margin: 0 auto 40px;
-	box-shadow: 0 0px 5px 0 #c9c9c9;
+	margin: 0 auto 2.5rem
+	box-shadow: 0 0px 0.3125rem 0 #c9c9c9;
 } 
 .recommend1 ul .ps{
-	margin-right: 25px;
+	margin-right: 1.5625rem;
 }
 .recommend1 ul .manmiao,.recommend1 ul .huixiang{
 	margin-right: 0px;
 }
 footer .fot{
-	width: 581px;
+	width: 36.3125rem;
 	margin: 0 auto;
 	position: relative;
 }
 .hy img{
 	position: absolute;
-	top: 35px;
+	top: 2.1875rem;
 	right: 0;
 }
 .fot-fl{
 	display: block;
-	width: 484px;
+	width: 30.25rem;
 }
 }
 
