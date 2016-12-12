@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			 #box{
+			 	width: 500px;
+			 	margin: 50px auto 0;
+			 }
+			#txt{
+				width: 500px;
+				height: 30px;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				display: none;
+			}
+			li{
+				width: 500px;
+				height: 30px;
+				margin-bottom: 5px;
+				background: #08AFB1;
+				list-style: none;
+				color: white;
+				line-height: 30px;
+				text-indent: 5px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+			li:hover{
+				background: #CD003F;
+			}
+			.act{
+				background: black;
+			}
+			.act1{
+				background: #CD003F;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text"  id="txt" />
+			<ul></ul>
+		</div>
+		<script>
+			var box=document.getElementById('box');
+			var txt=document.getElementById('txt');
+			var uls=document.getElementsByTagName('ul')[0];
+			var arr=['《跑男》','《我们的法则》','《极限挑战》','《我们来了》','《咱们穿越吧》','《天天向上》','《锵锵三人行》','《金星秀》','《极速前进》']
+			//生成li
+			var str='';
+			for (var i=0;i<arr.length;i++) {
+				str+='<li>'+arr[i]+'</li>'
+			}
+			uls.innerHTML=str
+			var list1=uls.getElementsByTagName('li');
+			//鼠标点击输入框时,提示内容列表显示
+			txt.onmousedown=function(ev){
+				var oEvent=ev||event;
+				uls.style.display='block';
+				//键盘控制上移下移
+				var num=list1.length;
+				var num1=-1;
+				document.onkeydown=function(ev){
+					var oEvent=ev||event;
+					//向上按键
+					if(oEvent.keyCode==38){
+						num--;
+						for (var i=0;i<list1.length;i++) {
+							list1[i].className='';
+						}
+						list1[num].className='act1';
+						if(num<=0){
+							num=list1.length
+						}
+					}
+					//向下按键
+					if(oEvent.keyCode==40){
+						num1++;
+						for (var i=0;i<list1.length;i++) {
+							list1[i].className='';
+						}
+						list1[num1].className='act1';
+						if(num1>=list1.length-1){
+							num1=-1;
+						}
+					}
+					//ctrl按键
+					if(oEvent.keyCode==17){
+						fn2();
+						for (var i=0;i<list1.length;i++) {
+							list1[i].onmousedown=function(ev){
+								var oEvent=ev||event;
+								oEvent.cancelBubble=true;
+								if(this.className==''){
+									this.className='act';
+									var arr=this.innerHTML;
+									txt.value+=arr;
+								}else{
+									var cont=txt.value;
+									var cont1=this.innerHTML;
+									var cont2='';
+									this.className='';
+									txt.value=cont.split(cont1).join(cont2);
+								}
+							};
+						}
+					}
+					fn1();
+					function fn1(){
+						//回车键
+						if(oEvent.keyCode==13){
+							for (var i=0;i<list1.length;i++) {
+								if(list1[i].className=='act1'){
+									txt.value=list1[i].innerHTML;
+									list1[i].className='act';
+								}else{
+									list1[i].className='';
+								}
+							}
+						}
+					}
+				}
+				//按键抬起
+				document.onkeyup=function(){
+					//document.onkeydown=null;
+					fn();
+				}
+				//点击提示内容列表
+				fn();
+				function fn(){
+					for (var i=0;i<list1.length;i++) {
+						list1[i].onmousedown=function(ev){
+							var oEvent=ev||event;
+							if(this.className==''){
+								for (var i=0;i<list1.length;i++) {
+									list1[i].className='';
+									list1[i].style.background='';
+								}
+								this.className='act';
+								var arr=this.innerHTML;
+								txt.value=arr;
+								uls.style.display='';
+								}else{
+									for (var i=0;i<list1.length;i++) {
+										list1[i].className='';
+										txt.value='';
+									}
+									var cont=txt.value;
+									var cont1=this.innerHTML;
+									var cont2='';
+									this.className='';
+									txt.value=cont.split(cont1).join(cont2);
+									uls.style.display='';
+							}
+							oEvent.cancelBubble=true;
+						};
+					}
+					oEvent.cancelBubble=true;
+				}
+			}
+			//点击document整个内容列表隐藏
+			document.onmousedown=function(){
+				uls.style.display='';
+			}
+		</script>
+	</body>
+</html>

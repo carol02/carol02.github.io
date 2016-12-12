@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				margin: 0 auto;
+				width: 400px;
+			}
+			ul,h2{
+				margin: 0;
+				padding: 0;
+			}
+			h2{
+				background: greenyellow;
+				color: white;
+				padding-left: 20px;
+				line-height: 40px;
+			}
+			li{
+				list-style: none;
+				padding-left: 20px;
+				line-height: 35px;
+				height: 35px;
+				border-bottom: 1px solid greenyellow;
+			}
+			span{
+				float: left;
+			}
+			img{
+				margin-left: 10px;
+				cursor: pointer;
+				float: left;
+				margin-top: 5px;
+			}
+			a{
+				display: inline-block;
+				width: 40px;
+				height: 30px;
+				background: #C0C0C0;
+				font-family: "微软雅黑";
+				text-align: center;
+				line-height: 30px;
+				text-decoration: none;
+				display: none;
+				float: left;
+				margin-top: 2px;
+				margin-left: 10px;
+				cursor: pointer;
+			}
+			input{
+				display: none;
+				height: 20px;
+				margin-top: 5px;
+				float: left;
+			}
+			a:hover{
+				color: white;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<h2>分类名称</h2>
+			<ul>
+				<li>
+					<input type="text"/>
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+                    <span>电视剧</span>
+					<img src="img2/12.jpg"/>
+				</li>
+				<li>
+					<input type="text"/>
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+                    <span>电视剧</span>
+					<img src="img2/12.jpg"/>
+				</li>
+				<li>
+					<input type="text"/>
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+                    <span>电视剧</span>
+					<img src="img2/12.jpg"/>
+				</li>
+				<li>
+					<input type="text"/>
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+                    <span>电视剧</span>
+					<img src="img2/12.jpg"/>
+				</li>
+				<li>
+					<input type="text"/>
+					<a href="javascript:;">保存</a>
+					<a href="javascript:;">取消</a>
+                    <span>电视剧</span>
+					<img src="img2/12.jpg"/>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var lis=document.getElementsByTagName('li');
+			for (var i=0;i<lis.length;i++) {
+				fn(i)
+			}
+			
+			function fn(index){
+				var imgs=lis[index].getElementsByTagName('img')[0];
+				var spans=lis[index].getElementsByTagName('span')[0];
+				var txt=lis[index].getElementsByTagName('input')[0];
+				var as=lis[index].getElementsByTagName('a');
+				
+				//点击修改小图标
+				imgs.onclick=function(){
+					this.style.display='none';
+					spans.style.display='none';
+					txt.style.display='block';
+					txt.value=spans.innerHTML;
+					for (var i=0;i<as.length;i++) {
+						as[i].style.display='block';
+					}
+				};
+				
+				//点击保存
+				as[0].onclick=function(){
+					fn1();
+					spans.innerHTML=txt.value;
+				};
+				
+				//点击取消
+				as[1].onclick=function(){
+					fn1();
+				};
+				
+				function fn1(){
+					imgs.style.display='block';
+					spans.style.display='block';
+					txt.style.display='none';
+					for (var i=0;i<as.length;i++) {
+						as[i].style.display='none';
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

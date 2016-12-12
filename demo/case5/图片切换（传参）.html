@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box,#box1{
+				width: 300px;
+				height: 500px;
+				border: 1px solid black;
+				position: relative;
+				float: left;
+				margin-left: 100px;
+			}
+			#box img,#box1 img{
+				width: 100%;
+				height: 100%;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				top: 0;
+				right: -55px;
+			}
+			li{
+				list-style: none;
+				width: 50px;
+				height: 50px;
+				background: orange;
+				opacity: .8;
+				cursor: pointer;
+				margin-bottom: 10px;
+			}
+			li:hover{
+				opacity: .4;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img2/1.jpg"/>
+			<ul></ul>
+		</div>
+		<div id="box1">
+			<img src="img2/2.jpg"/>
+			<ul></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var imgs=['img2/1.jpg','img2/2.jpg','img2/3.jpg','img2/4.jpg','img2/5.jpg','img2/6.jpg'];
+		var imgs1=['img2/2.jpg','img2/1.jpg','img2/3.jpg'];
+
+		fn('box',imgs)
+		fn('box1',imgs1)
+		
+		function fn(a,arr){
+			var Box=document.getElementById(a);
+			var pic=Box.getElementsByTagName('img')[0];
+			var uls=Box.getElementsByTagName('ul')[0];
+			var lis=Box.getElementsByTagName('li');
+			
+			//生成li
+			var str='';
+			for (var i=0;i<arr.length;i++) {
+				str+='<li></li>';
+			}
+			uls.innerHTML=str;
+			
+			//点击li切换图片
+			for (var i=0;i<lis.length;i++) {
+				lis[i].index=i;
+				lis[i].onclick=function(){
+					pic.src=arr[this.index];
+				}
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				border: 10px solid #A0A0A0;
+				background: red;
+				margin-top: 10px;
+			}
+			input,span{
+				margin-top: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var divs=document.getElementsByTagName('div')[0];
+				var name=document.getElementById('name');
+				var content=document.getElementById('content');
+				var btn=document.getElementById('btn');
+				
+				//[]中表示的是字符串，其中的值是可以变化的值
+				btn.onclick=function(){
+					divs.style[name.value]=content.value;
+					name.value='';
+					content.value='';
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<span>请输入属性名称：</span>
+		<input type="text"  id="name"/><br />
+		<span>请输入属性zhi：</span>
+		<input type="text" id="content"/>
+		<input type="button"  value="确定"  id="btn"/>
+		<div></div>
+	</body>
+</html>

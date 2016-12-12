@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,ul{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				height: 20px;
+				margin-bottom: 20px;
+				position: relative;
+				top: 0;
+			}
+		</style>
+		<script type="text/javascript" src="tween.js"></script>
+		<script type="text/javascript" src="mTween.js"></script>
+	</head>
+	<body>
+		<ul id="ul1">
+	        <li>111111 <input type="button" value="上移" /><input type="button" value="下移" /></li>
+	        <li>222222 <input type="button" value="上移" /><input type="button" value="下移" /></li>
+	        <li>333333 <input type="button" value="上移" /><input type="button" value="下移" /></li>
+	        <li>444444 <input type="button" value="上移" /><input type="button" value="下移" /></li>
+	        <li>555555 <input type="button" value="上移" /><input type="button" value="下移" /></li>
+	        <li>666666 <input type="button" value="上移" /><input type="button" value="下移" /></li>
+    	</ul>
+		<script>
+			var uls = document.getElementById('ul1');
+   			var bttn= document.getElementsByTagName('input');
+    		var lis = uls.getElementsByTagName('li');
+    		var timer=null;
+    		 for (var i=0; i<bttn.length; i++) {
+    		 	 bttn[i].index = i;
+    		 	 bttn[i].onclick = function() {
+    		 	 	var arr=this.parentNode;
+    		 	 	//var num1=this.parentNode.offsetTop/40
+    		 	 	var num=0;
+	    		 	if (this.index%2 == 0) {
+	    		 	 	if (this.parentNode == uls.firstElementChild) {
+	    		 	 	 	alert('到头了');
+	    		 	 	}else{
+	    		 	 		uls.insertBefore(arr, arr.previousElementSibling);
+	    		 	 	}
+    		 	 	}else{
+    		 	 		if (this.parentNode == uls.lastElementChild) {
+    		 	 			alert('到尾了');
+    		 	 		}else{
+    		 	 			 uls.insertBefore(this.parentNode, this.parentNode.nextElementSibling.nextElementSibling);
+    		 	 		}
+    		 	 	}
+    		 	 };
+    		 }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul,h2{
+				margin: 0;
+				padding: 0;
+			}
+			body>ul{
+				width: 200px;
+				border: 1px solid black;
+			}
+			li{
+				list-style: none;
+				cursor: pointer;
+			}
+			i{
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				background: url(img/ico1.gif) no-repeat;
+				top: 20px;
+				left: 5px;
+			}
+			h2{
+				line-height: 50px;
+				background: #EFBD00;
+				padding-left:20px ;
+				position: relative;
+			}
+			#list li,#list1 li,#list2 li{
+				width: 180px;
+				line-height: 30px;
+				padding-left:20px ;
+				border-bottom: 1px solid black;
+			}
+			#list ul,#list1 ul,#list2 ul{
+				display: none;
+			}
+			#list .act{
+				display: block;
+			}
+			.act1{
+				background: url(img/ico2.gif);
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li id="list">
+				<h2>
+					<i></i>
+					我的好友</h2>
+				<ul>
+					<li>杨雪</li>
+					<li>杨雪</li>
+					<li>杨雪</li>
+					<li>杨雪</li>
+					<li>杨雪</li>
+				</ul>
+			</li>
+			<li id="list1">
+				<h2><i></i>
+					企业好友</h2>
+				<ul>
+					<li>马云</li>
+					<li>马云</li>
+					<li>马云</li>
+					<li>马云</li>
+				</ul>
+			</li>
+			<li id="list2">
+				<h2><i></i>
+					黑名单</h2>
+				<ul>
+					<li>前男友</li>
+					<li>前男友</li>
+					<li>前男友</li>
+				</ul>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var list=document.getElementById('list');
+			var list1=document.getElementById('list1');
+			var list2=document.getElementById('list2');
+			var lis1=list.getElementsByTagName('li');
+			var lis2=list1.getElementsByTagName('li');
+			var lis3=list2.getElementsByTagName('li');
+			var that=null;
+			//点击h2：好友列表展开与收起
+			list.onOff=true;
+			list.onclick=function(){
+				that=this;
+				fn(this);
+			}
+			
+			list1.onOff=true;
+			list1.onclick=function(){
+				that=this;
+				fn(this);
+			}
+			
+			list2.onOff=true;
+			list2.onclick=function(){
+				that=this;
+				fn(this);
+			}
+			
+			function fn(that){
+				if(that.onOff){
+					if(list.onOff==!true||list1.onOff==!true||list2.onOff==!true){
+						for (var i=0;i<lis1.length;i++) {
+							lis1[i].style.background='';
+						}
+						list.getElementsByTagName('h2')[0].style.background='';
+						list.getElementsByTagName('ul')[0].style.display='';
+						list.getElementsByTagName('i')[0].className='';
+						list.onOff=true;
+						
+						for (var i=0;i<lis2.length;i++) {
+							lis2[i].style.background='';
+						}
+						list1.getElementsByTagName('h2')[0].style.background='';
+						list1.getElementsByTagName('ul')[0].style.display='';
+						list1.getElementsByTagName('i')[0].className='';
+						list1.onOff=true;
+						
+						for (var i=0;i<lis3.length;i++) {
+							lis3[i].style.background='';
+						}
+						list2.getElementsByTagName('h2')[0].style.background='';
+						list2.getElementsByTagName('ul')[0].style.display='';
+						list2.getElementsByTagName('i')[0].className='';
+						list2.onOff=true;
+					}
+					that.getElementsByTagName('h2')[0].style.background='pink';
+					that.getElementsByTagName('ul')[0].style.display='block';
+					that.getElementsByTagName('i')[0].className='act1';
+					that.onOff=false;
+				}else{
+					that.getElementsByTagName('h2')[0].style.background='';
+					that.getElementsByTagName('ul')[0].style.display='';
+					that.getElementsByTagName('i')[0].className='';
+					that.onOff=true;
+				}
+			}
+			
+			//点击li高亮
+			for (var i=0;i<lis1.length;i++) {
+				lis1[i].onclick=function(ev){
+					for (var i=0;i<lis1.length;i++) {
+						lis1[i].style.background='';
+					}
+					this.style.background='greenyellow';
+					ev.cancelBubble = true;
+				}
+			}
+			for (var i=0;i<lis2.length;i++) {
+				lis2[i].onclick=function(ev){
+					for (var i=0;i<lis2.length;i++) {
+						lis2[i].style.background='';
+					}
+					this.style.background='greenyellow';
+					ev.cancelBubble = true;
+				}
+			}
+			for (var i=0;i<lis3.length;i++) {
+				lis3[i].onclick=function(ev){
+					for (var i=0;i<lis3.length;i++) {
+						lis3[i].style.background='';
+					}
+					this.style.background='greenyellow';
+					ev.cancelBubble = true;
+				}
+			}
+		</script>
+	</body>
+</html>

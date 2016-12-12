@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				position: absolute;
+				display: none;
+			}
+			ul{
+				width: 150px;
+				border: 1px solid #888;
+				margin: 0;
+				padding: 0;
+				background: #99F
+			}
+			li{
+				list-style: none;
+				width: 100%;
+				height: 40px;
+				font-family: "微软雅黑";
+				line-height: 40px;
+				cursor: pointer;
+				position: relative;
+			}
+			i{
+				font-style: normal;
+				float: right;
+			}
+			li:hover{
+				background: silver;
+			}
+			li ul{
+				position: absolute;
+				right: -150px;
+				top: 0px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li>显示属性</li>
+				<li>查看<i>★</i>
+					<ul>
+						<li>大图标</li>
+						<li>中等图标</li>
+						<li>小图标</li>
+						<li>自动排列图标</li>
+						<li>将图标与网格对其</li>
+						<li>显示桌面图标</li>
+						<li>显示桌面小工具</li>
+					</ul>
+				</li>
+				<li>排序方式<i>★</i>
+					<ul>
+						<li>名称</li>
+						<li>类型</li>
+						<li>修改日期</li>
+						<li>项目类型</li>
+					</ul>
+				</li>
+				<li>刷新</li>
+				<li>图形选项<i>★</i>
+					<ul>
+						<li>屏幕适应度<i>★</i>
+							<ul>
+								<li>保持显示缩放比</li>
+							</ul>
+						</li>
+						<li>快捷键<i>★</i>
+							<ul>
+								<li>启用</li>
+								<li>禁用</li>
+							</ul>
+						</li>
+						<li>系统托盘图标<i>★</i>
+							<ul>
+								<li>启用</li>
+								<li>禁用</li>
+							</ul>
+						</li>
+						<li>气球通知<i>★</i>
+							<ul>
+								<li>图形属性通知<i>★</i>
+									<ul>
+										<li>启用</li>
+										<li>禁用</li>
+									</ul>
+								</li>
+								<li>最佳分辨率通知<i>★</i>
+									<ul>
+										<li>启用</li>
+										<li>禁用</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>旋转<i>★</i>
+							<ul>
+								<li>旋转至正常</li>
+								<li>旋转至90度</li>
+								<li>旋转至180度</li>
+								<li>旋转至270度</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>个性化</li>
+			</ul>
+		</div>
+		<script>
+			document.oncontextmenu=function (ev){
+				var oEvent=ev||event;
+				var box=document.getElementById('box');
+				
+				box.style.display='block';
+				box.style.left=oEvent.clientX+'px';
+				box.style.top=oEvent.clientY+'px';
+				
+				return false;
+			}
+			document.onclick=function(){
+				var box=document.getElementById('box');
+				box.style.display='';
+			}
+			var is=document.getElementsByTagName('i');
+			for (var i=0;i<is.length;i++) {
+				is[i].parentNode.onmouseover=function(){
+					this.children[1].style.display='block';
+				}
+				is[i].parentNode.onmouseout=function(){
+					this.children[1].style.display='';
+				}
+			}
+			
+		</script>
+	</body>
+</html>

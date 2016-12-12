@@ -1,0 +1,27 @@
+body,p,h1,h2,h3,h4,h5,h6,dl,dd{
+	margin: 0; 
+	font-size: 0px;
+	}
+ol,ul{ 
+	list-style:none; 
+	margin: 0;
+	padding:0;
+	}
+a{
+	text-decoration: none;
+	}
+img{
+	border: none;
+	vertical-align: top;
+	}
+.clearfixed:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}

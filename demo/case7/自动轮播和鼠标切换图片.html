@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 800px;
+				height: 500px;
+				border: 5px solid greenyellow;
+				margin: 0 auto;
+				position: relative;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+			a{
+				position: absolute;
+				width: 80px;
+				height: 80px;
+				border-radius:50%;
+				background: rgba(225,225,225,.8);
+				text-align: center;
+				line-height: 80px;
+				text-decoration: none;
+				color: #000000;
+				font-size: 60px;
+				top: 50%;
+				margin-top: -40px;
+			}
+			a:hover{
+				opacity: .5;
+			}
+			#pre{
+				left: 0;
+			}
+			#next{
+				right: 0;
+			}
+			ul{
+				width: 800px;
+				text-align: center;
+				margin: 5px auto;
+			}
+			li{
+				list-style: none;
+				width: 100px;
+				height: 15px;
+				background: #00AEFE;
+				display: inline-block;
+				margin-right: 5px;
+			}
+			li:hover{
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img src="img/1.jpg"/>
+			<a href="javascript:;" id="pre"><</a>
+			<a href="javascript:;" id="next">></a>
+		</div>
+		<ul>
+		</ul>
+		<script>
+			var uls=document.getElementsByTagName('ul')[0];
+			var lis=uls.getElementsByTagName('li');
+			var divs=document.getElementsByTagName('div')[0];
+			var pre=document.getElementById('pre');
+			var next=document.getElementById('next');
+			var img1=document.getElementsByTagName('img')[0];
+			var imgs=['img3/1.jpg','img3/2.jpg','img3/3.jpg','img3/4.jpg','img3/5.jpg','img3/6.jpg'];
+			var num=0;
+			var timer=null;
+			//生成下标
+			var str='';
+			for (var i=0;i<imgs.length;i++) {
+				str +='<li></li>';
+			}
+			uls.innerHTML=str;
+			lis[num].style.backgroundColor='red';
+			
+			//点击左边切换图片
+			pre.onclick=function(){
+				num--
+				if(num<0){
+					num=imgs.length-1;
+				}
+				img1.src=imgs[num];
+				for (var i=0;i<imgs.length;i++) {
+					lis[i].style.backgroundColor='';
+				}
+				lis[num].style.backgroundColor='red';
+			}
+			//点击右边切换图片
+			next.onclick=function(){
+				num++
+				if(num>imgs.length-1){
+					num=0;
+				}
+				img1.src=imgs[num];
+				for (var i=0;i<imgs.length;i++) {
+					lis[i].style.backgroundColor='';
+				}
+				lis[num].style.backgroundColor='red';
+			}
+			//图片自动轮播
+			fn1();
+			function fn1(){
+				timer = setInterval(fn,1000);
+				function fn(){
+					num++;
+					if(num>imgs.length-1){
+						num=0;
+					}
+					img1.src=imgs[num];
+					for (var i=0;i<imgs.length;i++) {
+						lis[i].style.backgroundColor='';
+					}
+					lis[num].style.backgroundColor='red';
+				}
+			}
+			divs.onmouseover=function(){
+				clearInterval(timer);
+			};
+			divs.onmouseout=function(){
+				fn1();
+			};
+		</script>
+	</body>
+</html>

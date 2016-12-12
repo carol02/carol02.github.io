@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box:after{
+				content: '';
+				clear: both;
+				display: block;
+			}
+			#box>span{
+				float: left;
+				font-size: 18px;
+				font-family: "微软雅黑";
+				padding-top: 3px;
+			}
+			ul{
+				padding: 0;
+				margin: 0;
+				float: left;
+				height: 24px;
+			}
+			li{
+				list-style: none;
+				width: 22px;
+				height: 24px;
+				float: left;
+				background: url(img/1.png) no-repeat;
+				margin-right: 5px;
+				margin-top: 3px;
+			}
+			.act{
+				background: url(img/5.png) no-repeat;
+			}
+			.act1{
+				background: url(img/4.png) no-repeat;
+			}
+			#box1{
+				float: left;
+				width: 258px;
+				height: 40px;
+				position: relative;
+				margin-left: 5px;
+			}
+			#box1 p{
+				font-size: 22px;
+				font-family: "微软雅黑";
+				color: orange;
+				font-weight: bold;
+				position: absolute;
+				top: -20px;
+				display: none;
+			}
+			.as{
+				display: block;
+			}
+			#as1{
+				border: 10px solid transparent;
+				border-right-color: #dedead;
+				width: 0;
+				height: 0;
+				position: absolute;
+				left: -15px;
+				top: 9px;
+			}
+			#as11{
+				border: 9px solid transparent;
+				border-right-color: #ffffe7;
+				width: 0;
+				height: 0;
+				position: absolute;
+				left: -13px;
+				top: 10px;
+				z-index: 10;
+			}
+			#as2{
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 245px;
+				height: 38px;
+				border: 1px solid #dedead;
+				background: #ffffe7;
+				line-height: 38px;
+				font-size: 11px;
+				color: #94948c;
+				padding-left: 7px;
+			}
+			#as2 span{
+				display: inline-block;
+				width: 13px;
+				height: 13px;
+				background: url(img/2.png) no-repeat;
+			}
+			#as2 #last{
+				background: url(img/3.png) no-repeat;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var uls=document.getElementsByTagName('ul')[0];
+				var lis=uls.getElementsByTagName('li');
+				var arr=['较差','推荐','力推'];
+				var ps=document.getElementsByTagName('p')[0];
+				var as=document.getElementById('as');
+				
+				
+				
+				for (var i=0;i<lis.length;i++) {
+					lis[i].index=i;
+					//鼠标移入
+					lis[i].onmouseover=function(){
+						for (var i=0;i<lis.length;i++){
+							lis[i].className='';
+						}
+						
+						as.style.display='none';
+						ps.style.display='block';
+						
+						for (var i=0;i<=this.index;i++){
+							if(this.index<2){
+								lis[i].className='act';
+								ps.innerHTML=arr[0];
+							}else{
+								lis[i].className='act1';
+								if(this.index<lis.length-1){
+									ps.innerHTML=arr[1];
+								}else{
+									ps.innerHTML=arr[2];
+								}
+							}
+						}
+					};
+					
+					//鼠标移除
+					lis[i].onmouseout=function(){
+						for (var i=0;i<=this.index;i++) {
+							lis[i].className='';
+						}
+						as.style.display='block';
+						ps.style.display='none';
+					};
+					
+					//鼠标点击
+					lis[i].onclick=function(){
+						this.onmouseout=null;
+					};
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<span>总体评价：</span>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<div id="box1">
+				<p></p>
+				<div id="as">
+					<div id="as1"></div>
+					<div id="as11"></div>
+					<div id="as2">
+						小提示：点击星星就能打分
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span id="last"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

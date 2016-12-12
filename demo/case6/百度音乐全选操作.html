@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 500px;
+				height: 350px;
+				margin: 0 auto;
+			}
+			ul,p{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			#list li{
+				width: 100%;
+				height: 50px;
+				background: #f7ffff;
+				cursor: pointer;
+				border-bottom: 1px solid white;
+			}
+			#list li:nth-child(even){
+				background: #ffffff;
+			}
+			#list li:hover{
+				background: #efefef;
+			}
+			.bot{
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				border: 1px solid #8c8c8c;
+				margin-top: 10px;
+				margin-left: 30px;
+			}
+			.bot input{
+				width: 20px;
+				height: 20px;
+				margin-left: 2.5px;
+				margin-top: 1.5px;
+				background: #e7e7e7;
+				border: 1px solid #b5b5b5;
+				opacity: .9;
+			}
+			#list p,#fot p{
+				display: inline-block;
+				font-size: 22px;
+				font-family: "微软雅黑";
+				position: relative;
+			}
+			.song{
+				position: absolute;
+				top: -25px;
+				left: 45px;
+				width: 164px;
+			}
+			.singer{
+				position: absolute;
+				top: -25px;
+				left: 258px;
+				width: 105px;
+			}
+			#fot{
+				width: 100%;
+				height: 60px;
+				border-top: 1px solid #dedede;
+				position: relative;
+			}
+			#fot .bot input{
+				position: absolute;
+				top: 12px;
+			}
+			#all{
+				position: absolute;
+				top: 10px;
+				left: 110px;
+				width: 50px;
+			}
+			#fot ul{
+				height: 100%;
+				position: absolute;
+				top: 10px;
+				left: 200px;
+			}
+			#fot li{
+				width: 45px;
+				height: 30px;
+				border: 1px solid #dedede;
+				border-radius: 5px;
+				float: left;
+				margin-right: 15px;
+				color: #949494;
+				line-height: 30px;
+				padding-left: 35px;
+				position: relative;
+			}
+			#fot a{
+				position: absolute;
+				left: 10px;
+				top: 7px;
+				width: 17px;
+				height: 15px;
+			}
+			#collect{
+				background: url(img/6.png);
+			}
+			#add{
+				background: url(img/7.png);
+			}
+			#delt{
+				background: url(img/8.png);
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var fot=document.getElementById('fot');
+				var list=document.getElementById('list');
+				var lis=list.getElementsByTagName('li');
+				var bot=list.getElementsByTagName('input');
+				var color=['#f7ffff','#ffffff'];
+				var Ball=fot.getElementsByTagName('input')[0];
+			
+				//点击勾选按钮
+				for (var i=0;i<lis.length;i++) {
+					bot[i].index=i;
+					bot[i].onclick=function(){
+						if(this.checked){
+							lis[this.index].style.background='#efefef';
+						}else{
+							lis[this.index].style.background='';
+							lis[this.index].style.background=color[this.index%2];
+						}
+						Ball.checked=change();
+					}
+				}
+				function change(){
+					for (var i=0;i<lis.length;i++) {
+						if(!bot[i].checked){
+							return false;
+						}
+					}
+					return true;
+				}
+				//点击全选按钮：list中所有的li背景颜色发生改变，并且全选中
+				Ball.onclick=function(){
+					if(Ball.checked){
+						for (var i=0;i<lis.length;i++) {
+							bot[i].checked='checked';
+							lis[i].style.background='#efefef';
+						}
+					}else{
+						for (var i=0;i<lis.length;i++) {
+							bot[i].checked='';
+							lis[i].style.background='';
+							lis[i].style.background=color[i%2];
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<p>
+						<span class="song">私奔</span>
+						<span class="singer">梁博</span>
+					</p>
+				</li>
+				<li>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<p>
+						<span class="song">北京北京</span>
+						<span class="singer">梁博,黄勇</span>
+					</p>
+				</li>
+				<li>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<p>
+						<span class="song">我爱你中国</span>
+						<span class="singer">梁博</span>
+					</p>
+				</li>
+				<li>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<p>
+						<span class="song">花火</span>
+						<span class="singer">梁博</span>
+					</p>
+				</li>
+				<li>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<p>
+						<span class="song">回来</span>
+						<span class="singer">梁博</span>
+					</p>
+				</li>
+				<li>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<p>
+						<span class="song">爱要有你才完美</span>
+						<span class="singer">梁博,那英</span>
+					</p>
+				</li>
+			</ul>
+			<div id="fot">
+				<p>
+					<span class="bot">
+						<input type="checkbox"/>
+					</span>
+					<span id="all">全选</span>
+				</p>
+				<ul>
+					<li>
+						<a href="javascript:;" id="collect"></a>
+						收藏
+					</li>
+					<li>
+						<a href="javascript:;" id="add"></a>
+						添加
+					</li>
+					<li>
+						<a href="javascript:;" id="delt"></a>
+						删除
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

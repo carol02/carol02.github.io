@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				font-size: 20px;
+				font-weight: bold;
+			}
+			#content{
+				width: 700px;
+				height: 200px;
+				border: 2px solid black;
+				text-align: center;
+				line-height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+		</p>
+		<input type="button" value="找到arr里所有的数字"/>
+		<input type="button" value="找到可以转成数字的"/>
+		<input type="button" value="把转成数字以后，最大值判断出来"/>
+		<input type="button" value="把 NaN 所在的位置找出来"/>
+		<p id="content"></p>
+		<script type="text/javascript">
+			var btn=document.getElementsByTagName('input');
+			var ps=document.getElementsByTagName('p');
+			var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+			var arr1=[];
+			
+			//找到arr里所有的数字
+			btn[0].onclick=function(){
+				ps[1].innerHTML='';
+				for (var i=0;i<arr.length;i++) {
+					if(typeof(arr[i])=='number'&&!isNaN(arr[i])){
+						ps[1].innerHTML+=arr[i]+',';
+					}
+				}
+			};
+			
+			//找到可以转成数字的
+			btn[1].onclick=function(){
+				ps[1].innerHTML='';
+				for (var i=0;i<arr.length;i++) {
+					if(parseFloat(arr[i])){
+						ps[1].innerHTML+=arr[i]+',';
+					}
+				}
+			};
+			
+			//把转成数字以后，最大值判断出来
+			btn[2].onclick=function(){
+				ps[1].innerHTML='';
+				for (var i=0;i<arr.length;i++) {
+					if(parseFloat(arr[i])){
+						arr1.push(parseFloat(arr[i]))
+					}
+				}
+				for (var i=0;i<arr1.length;i++) {
+					if(arr1[i]>arr1[0]){
+						ps[1].innerHTML+=arr1[i];
+					}
+				}
+			};
+			
+			//把 NaN 所在的位置找出来
+			btn[3].onclick=function(){
+				ps[1].innerHTML='';
+				for (var i=0;i<arr.length;i++) {
+					if(typeof(arr[i])=='number'&&isNaN(arr[i])){
+						ps[1].innerHTML+=i+',';
+					}
+				}
+			};
+		</script>
+	</body>
+</html>

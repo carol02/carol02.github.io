@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 800px;
+				height: 500px;
+				margin: 40px auto;
+				border: 5px solid black;
+				position: relative;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+			a{
+				width: 80px;
+				height: 80px;
+				background: #CCCCCC;
+				font-size: 60px;
+				font-weight: bold;
+				color: white;
+				line-height: 80px;
+				text-align: center;
+				text-decoration: none;
+				position: absolute;
+				top: 50%;
+				margin-top: -40px;
+				border-radius: 50%;
+				opacity: .9;
+			}
+			a:hover{
+				opacity: .5;
+			}
+			#nxt{
+				right: 0;
+			}
+			#pre{
+				left: 0;
+			}
+			ul{
+				width: 100%;
+				height: 20px;
+				margin: 0;
+				position: absolute;
+				bottom: -50px;
+				text-align: center;
+			}
+			li{
+				display: inline-block;
+				position: relative;
+				list-style: none;
+				width: 100px;
+				height: 20px;
+				background: #5A94EF;
+				float: left;
+				margin-right: 8px;
+				z-index: 10;
+			}
+			.act{
+				background: #FFFF00;
+			}
+			li img{
+				width: 150px;
+				height: 80px;
+				border: 5px solid #CCCCCC;
+				z-index: 20;
+				position: absolute;
+				top: -110px;
+				left: -20px;
+			}
+			#box1{
+				border: 20px solid transparent;
+				border-top-color: #CCCCCC;
+				width: 0;
+				height: 0;
+				position: absolute;
+				left: 50%;
+				margin-left: -20px;
+				top: -20px;
+			}
+			#Box{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<a href="javascript:;" id="pre"><</a>
+			<a href="javascript:;" id="nxt">></a>
+			<img src="" id="pic"/>
+			<ul>
+				<!--
+                <li class="act">
+					<div id="Box">
+						<img src="img2/1.jpg"/>
+						<div id="box1"></div>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var box=document.getElementById('box');
+			var as=document.getElementsByTagName('a');
+			var pic=document.getElementById('pic');
+			var uls=document.getElementsByTagName('ul')[0];
+			var imgs=['img2/1.jpg','img2/2.jpg','img2/3.jpg','img2/4.jpg','img2/5.jpg','img2/6.jpg'];
+			var num=0;
+			var lis=uls.getElementsByTagName('li');
+			var arr=[];
+			
+			
+			//生成li
+			var str='';
+			for (var i=0;i<imgs.length;i++) {
+				str+='<li><div id="Box"><img src="'+imgs[i]+'"/><div id="box1"></div></div></li>';
+			};
+			uls.innerHTML=str;
+			//获取Box小图标元素
+			for (var i=0;i<lis.length;i++) {
+				//console.log(lis[i].getElementsByTagName('div')[0])
+				arr.push(lis[i].getElementsByTagName('div')[0]);
+			}
+			//console.log(arr)
+			
+			//页面初始化
+			pic.src=imgs[num];
+			lis[num].className='act';
+			
+			//点击a：左右循环切换图片、对应li高亮
+			//点击向左切换
+			as[0].onclick=function(){
+				//清楚所有高亮
+				for (var i=0;i<lis.length;i++) {
+					lis[i].className='';
+				}
+				//切换图片
+				num--;
+				if(num<0){
+					num=imgs.length-1;
+				}
+				pic.src=imgs[num];
+				//对应li高亮
+				lis[num].className='act';
+			}
+			//点击向右切换
+			as[1].onclick=function(){
+				//清楚所有高亮
+				for (var i=0;i<lis.length;i++) {
+					lis[i].className='';
+				}
+				//切换图片
+				num++;
+				if(num>=imgs.length){
+					num=0;
+				}
+				pic.src=imgs[num];
+				//对应li高亮
+				lis[num].className='act';
+			}
+			
+			for (var i=0;i<lis.length;i++) {
+				//移入li：显示小图、并且li高亮
+				lis[i].index=i;
+				lis[i].onmouseover=function(){
+					for (var i=0;i<lis.length;i++) {
+						lis[i].style.background='';
+						arr[i].style.display='';
+					}
+					this.style.background='orange';
+					arr[this.index].style.display='block';
+				}
+				//鼠标移出li:小图标消失，li高亮取消
+				lis[i].onmouseout=function(){
+					arr[this.index].style.display='';
+					this.style.background='';
+				}
+				
+				//点击小图标切换到对应图片
+				arr[i].ha=i;
+				arr[i].onclick=function(){
+					for (var i=0;i<lis.length;i++) {
+						lis[i].className='';
+						lis[i].style.background='';
+					}
+					this.style.display='';
+					pic.src=imgs[this.ha];
+					lis[this.ha].className='act';
+				}
+			}
+			
+		</script>
+	</body>
+</html>

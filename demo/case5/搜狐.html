@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				margin: 10px auto;
+				width: 268px;
+				height: 395px;
+				background: #dee7e7;
+				padding: 0 6px;
+				position: relative;
+			}
+			h2{
+				font-size: 18px;
+				font-family: "微软雅黑";
+				color: #103142;
+				height: 100%;
+				width: 133px;
+				border-bottom: 1px solid #94bdd6;
+				padding-left: 13px;
+				line-height: 36px;
+			}
+			#title{
+				width: 100%;
+				height: 36px;
+				position: relative;
+			}
+			#title a{
+				position: absolute;
+				bottom: -1px;
+				width: 35px;
+				height: 24px;
+				border: 1px solid #94bdd6;
+				text-align: center;
+				line-height: 24px;
+				text-decoration: none;
+				color: black;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			#title #as1{
+				right: 86px;
+				border-bottom: none;
+				background: #ffffff;
+				height: 25px;
+			}
+			#title #as2{
+				border-left: none;
+				border-right: none;
+				right: 51px;
+			}
+			#title #as3{
+				right: 16px;
+			}
+			#box>a{
+				font-size: 12px;
+				color: #000000;
+				text-decoration: none;
+				position: absolute;
+				right: 0;
+				bottom: 8px;
+			}
+			li{
+				list-style: none;
+				position: relative;
+				cursor: pointer;
+				font-size: 12px;
+			}
+			.cont,.cont1{
+				width: 260px;
+				height: 27px;
+				padding-left: 8px;
+				border-bottom: 1px dashed white;
+			}
+			.cont1{
+				height: 80px;
+				background-color: #FFFFFF;
+			}
+			.cont span,.cont1 span{
+				position: absolute;
+				width: 17px;
+				height: 13px;
+				background: #29739c;
+				color: white;
+				font-weight: bold;
+				text-align: center;
+				font-family: arial;
+			}
+			.cont span{
+				top: 8px;
+			}
+			.cont1 span{
+				top: 10px;
+			}
+			.cont p{
+				position: absolute;
+				top: 8px;
+				left: 36px;
+			}
+			.cont1 img{
+				width: 80px;
+				height: 60px;
+				padding: 2px;
+				border: 1px solid #dee7e7;
+				position: absolute;
+				left: 35px;
+				top: 7px;
+			}
+			.cont1 p{
+				width: 118px;
+				height: 58px;
+				color: #185273;
+				line-height: 18px;
+				font-size: 12px;
+				position: absolute;
+				top: 10px;
+				right: 8px;
+			}
+			.cont1 a{
+				display: block;
+				width: 41px;
+				height: 21px;
+				background: #29739c;
+				font-size: 12px;
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				line-height: 21px;
+				padding-left: 5px;
+				float: right;
+			}
+			.act{
+				display: block;
+			}
+			.act1{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id='title'>
+				<h2>观看排行榜</h2>
+				<a href="javascript:;" id="as1">每日</a>
+				<a href="javascript:;" id="as2">每周</a>
+				<a href="javascript:;" id="as3">全部</a>
+			</div>
+			<ul></ul>
+			<a href="javascript:;">更多》</a>
+		</div>
+		<script type="text/javascript">
+			var lis=document.getElementsByTagName('li');
+			var uls=document.getElementsByTagName('ul')[0];
+			var arr=[
+						'解密：关于人类和地球的一千零一问',
+						'经典传奇：探索全世界重大事件..',
+						'眼界：展现普通人的曲折命运和动人..',
+						'档案(BTV)：惊人事件和传奇背..',
+						'世纪十最：30个震惊世界的Top..',
+						'身边的毛泽东：警卫员解密毛泽东秘..',
+						'新电影传奇：每一部电影都有自己的..',
+						'档案(上视纪实频道)：解密档案中..',
+						'探寻传世国宝的千度传奇',
+						'纪实系列：讲述社会百态，透视事实..'
+					]
+			var imgs=['img1/1.png','img1/2.png','img1/3.png','img1/4.png','img1/5.png','img1/6.png','img1/7.png','img1/8.png','img1/9.png','img1/10.png'];
+			var str='';
+			//生成视频列表
+			for (var i=0;i<imgs.length;i++) {
+				str+='<li><div class="cont act"><span>'+(i+1)+'</span><p>'+arr[i]+'</p></div><div class="cont1 act1"><span>'+(i+1)+'</span><img src="'+imgs[i]+'"/><p>'+arr[i]+'<a href="javascript:;">播放</a></p></div></li>'
+			}
+			uls.innerHTML=str;
+			//页面初始化
+			fn(lis[0],'cont act1','cont1 act','oDiv')
+			for (var i=0;i<lis.length;i++) {
+				//鼠标移入
+				lis[i].onmouseover=function(){
+					var that=this;
+					for (var i=0;i<lis.length;i++) {
+						fn(lis[i],'cont act','cont1 act1','oDiv')
+					}
+					fn(that,'cont act1','cont1 act','divs')
+				}
+			}
+			function fn(obj,activ,activ1,obj1){
+				var obj1=obj.getElementsByTagName('div');
+				obj1[0].className=activ;
+				obj1[1].className=activ1;
+			}
+		</script>
+	</body>
+</html>

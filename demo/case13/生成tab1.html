@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#btn{
+				margin-left: 50px;
+			}
+			a{
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				background: #AAAAAA;
+				border: 1px solid black;
+				text-align: center;
+				line-height: 30px;
+			}
+			#box{
+				width: 500px;
+				height: 500px;
+				border: 1px solid black;
+				margin-left: 10px;
+				margin-top: 20px;
+				background: pink;
+			}
+			span{
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				background: #C7AF81;
+				text-align: center;
+				line-height: 30px;
+				font-family: "微软雅黑";
+				font-weight: bold;
+				font-size: 20px;
+				margin-right: 10px;
+				cursor: pointer;
+			}
+			i{
+				font-style: normal;
+				margin-left: 10px;
+				background: white;
+				color: red;
+				cursor: pointer;
+				
+			}
+			#content div{
+				text-align: center;
+				line-height: 400px;
+				font-size: 50px;
+				display: none;
+			}
+			#content .active{
+				display: block;
+			}
+			.active1{
+				background: yellow;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="btn">
+			<a href="javascript:;">内容1</a>
+			<a href="javascript:;">内容2</a>
+			<a href="javascript:;">内容3</a>
+			<a href="javascript:;">内容4</a>
+		</div>
+		<div id='box'>
+			<div id="btn1">
+				<!--
+                	作者：offline
+                	时间：2016-07-29
+                	描述：
+                <span class="active1">内容1<i>×</i></span>
+				<span>内容2<i>×</i></span>
+				<span>内容3<i>×</i></span>
+				<span>内容4<i>×</i></span>-->
+			</div>
+			<div id="content">
+				<!--
+                	作者：offline
+                	时间：2016-07-29
+                	描述：
+                <div class="active">内容1</div>
+				<div>内容2</div>
+				<div>内容3</div>
+				<div>内容4</div>-->
+			</div>
+		</div>
+		<script>
+			var as=document.getElementsByTagName('a');
+			var btn1=document.getElementById('btn1');
+			var content=document.getElementById('content');
+			for (var i=0;i<as.length;i++) {
+				as[i].onclick=function(){
+					if(this.obj)return;
+					var that=this;
+					this.obj=true;
+					//生成小按钮
+					var spans=document.createElement('span');
+					spans.innerHTML='<strong>'+this.innerHTML+'</strong>'+'<i>X<i>';
+					//生成内容部分
+					var cont=document.createElement('div');
+					cont.innerHTML=this.innerHTML;
+					btn1.appendChild(spans);
+					content.appendChild(cont);
+					//点击高亮状态
+					for (var i=0;i<btn1.children.length;i++) {
+							btn1.children[i].className='';
+							content.children[i].className='';
+					}
+					spans.className='active1';
+					cont.className='active';
+					//点击内部按钮时
+					var strongs=spans.children[0]
+					strongs.onclick=function(){
+						//console.log(btn1.children.length)
+						for (var i=0;i<btn1.children.length;i++) {
+							btn1.children[i].className='';
+							content.children[i].className='';
+							//btn1.children[i].style.background='';
+							//content.children[i].style.display='';
+						}
+						this.parentNode.className='active1';
+						cont.className='active';
+					}
+					//点击关闭删除按钮时
+					//console.log(spans.children)
+					spans.children[1].onclick=function(){
+						btn1.removeChild(spans);
+						content.removeChild(cont);
+						if(this.parentNode.className=='active1'&&btn1.children.length>0){
+							//btn1.children[0].style.background='yellow';
+							//content.children[0].style.display='block';
+							btn1.children[0].className='active1';
+							content.children[0].className='active';
+						}
+					 	that.obj=false;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
