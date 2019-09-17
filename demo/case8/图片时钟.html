@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				margin: 0;
+				padding: 0;
+				position: relative;
+				height: 170px;
+				overflow: hidden;
+			}
+			li{
+				list-style: none;
+				width: 120px;
+				height: 170px;
+				position: relative;
+				float: left;
+			}
+			div{
+				height: 340px;
+				position: absolute;
+				top: 0;
+			}
+			img{
+				width: 120px;
+				height: 170px;
+				vertical-align: top;
+			}
+		</style>
+		<script type="text/javascript" src="tween.js"></script>
+		<script type="text/javascript" src="mTween.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<img src="img/colon.jpg" alt="">
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<img src="img/colon.jpg" alt="">
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+			<li>
+				<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var divs = document.getElementsByTagName('div');
+			var imgs = document.querySelectorAll('li>img');
+			//用来记录上一次的时间
+			var old = getTime();
+			//初始化时间
+			for(var i=0;i<old.length;i++){
+				divs[i].getElementsByTagName('img')[0].src = 'img/'+old[i]+'.jpg';
+			}
+
+			setInterval(function(){
+				fn();
+				var time = getTime();
+				for(var i=0;i<time.length;i++){
+					//拿上次的时间和这次的时间进行对比，如果有变化就切换图片
+					if(old[i] != time[i]){
+						slied(i,time[i]);
+					}
+				}
+				//更新时间
+				old = time;
+			}, 1000)
+			//点的闪烁
+			function fn(){
+				imgs[0].src = 'img/colon.jpg';
+				imgs[1].src = 'img/colon.jpg';
+
+				setTimeout(function(){
+					imgs[0].src = 'img/colon1.jpg';
+					imgs[1].src = 'img/colon1.jpg';
+				}, 500)
+			}
+			//获取时间
+			function getTime(){
+				var date = new Date();
+				var h = date.getHours();
+				var m = date.getMinutes();
+				var s = date.getSeconds();
+				var time = toTwo(h)+toTwo(m)+toTwo(s);
+				return time;
+			}
+			//图片滑动实现
+			function slied(n,time){
+				var imgs = divs[n].getElementsByTagName('img');
+				imgs[1].src = 'img/'+time+'.jpg';
+				mTween(divs[n],'top',-172,400,'linear',function(){
+					imgs[0].src = 'img/'+time+'.jpg';
+					divs[n].style.top = '';
+				});
+			}
+			//补0
+			function toTwo(n){
+				return n<10?'0'+n:''+n;
+			}	
+		</script>
+	</body>
+</html>

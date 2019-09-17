@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: relative;
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				background: red;
+				border: 1px solid black;
+				font-size: 20px;
+				font-family: "微软雅黑";
+				font-weight: bold;
+				text-align: center;
+				color: white;
+				line-height: 50px;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn=document.getElementById('btn');
+				var box=document.getElementById('box');
+				var divs=box.getElementsByTagName('div');
+				var str='';
+				var num=0;
+				var len=20;
+				
+				btn.onclick=function(){
+					box.innerHTML='';
+					
+					for (var i=0;i<len;i++) {
+						if(i<len/2){
+							str+='<div style="left:'+i*55+'px;top:'+i*55+'px;">'+i+'</div>';
+						}else{
+							str+='<div style="left:'+i*55+'px;top:'+(len-i-1)*55+'px;">'+i+'</div>';
+						}
+					}
+					
+					box.innerHTML=str;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="点击生成一个Vzi" />
+		<div id="box"></div>
+	</body>
+</html>

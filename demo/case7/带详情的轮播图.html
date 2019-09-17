@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 800px;
+				height: 500px;
+				margin: 0 auto;
+				border: 5px solid peru;
+				position: relative;
+				overflow: hidden;
+			}
+			#img{
+				width: 4800px;
+				height: 500px;
+				overflow: hidden;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			img{
+				width:800px;
+				height: 500px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			ul{
+				width: 800px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				bottom: 0px;
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				width: 100%;
+				height: 100%;
+				list-style: none;
+				background: rgba(0,0,0,.5);
+				color: white;
+				line-height: 40px;
+				position: absolute;
+				left: 0;
+				top: 105px;
+			}
+			ul li:first-child{
+				top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="img">
+				<img src="img/1.jpg"/>
+			</div>
+			<ul>
+				<li>
+					<strong>第一张</strong><br />
+					<span>陨石天空</span>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="tween.js"></script>
+		<script type="text/javascript" src="mTween.js"></script>
+		<script type="text/javascript">
+			var img1=document.getElementById('img');
+			var uls=document.getElementsByTagName('ul')[0];
+			var imgs=['img3/1.jpg','img3/2.jpg','img3/3.jpg','img3/4.jpg','img3/5.jpg','img3/6.jpg'];
+			var arr=[
+						['第一张','第二张','第三张','第四张','第五张','第六张'],
+						['陨石天空','蓝天碧水','海边独桥','陨石海啸','连绵青山','美丽夕阳']
+					];
+			var str='';
+			var str1='';
+			for (var i=0;i<imgs.length;i++) {
+				str+='<img src="'+imgs[i]+'" style="left:'+i*800+'px"/>'
+				str1+='<li><strong>'+arr[0][i]+'</strong><br /><span>'+arr[1][i]+'</span></li>';
+			}
+			img1.innerHTML=str;
+			uls.innerHTML=str1;
+			var imgss=img1.getElementsByTagName('img');
+			var lis=document.getElementsByTagName('li');
+			var num=0;
+			//默认情况下图1的描述是显示的，等待1S后在执行代码使其消失
+			setTimeout(fn,1000)
+			function fn(){
+				//图片描述出现
+				mTween(lis[num],'top',105,1000,'linear',function(){
+						//图片描述消失
+						num++;
+						num%=lis.length;
+						//下一个图片的运动。运动图片的父极根据运动目标点的变化来显示图片
+						mTween(img1,'left',-800*num,1000,'linear',function(){
+							//图片描述出来。循环执行代码
+							mTween(lis[num],'top',0,1000,'linear',function(){
+			
+								//延时1秒，再次调用函数。
+								setTimeout(function(){
+									fn();
+								}, 1000)
+							});
+						});
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box,#box2,#box3,#box4{
+				position: relative;
+				width:100%;
+				height: 350px;
+			}
+			#box div,#box2 div,#box3 div,#box4 div{
+				width: 80px;
+				height: 30px;
+				font-size: 16px;
+				font-family: "微软雅黑";
+				line-height: 30px;
+				text-align: center;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box2"></div>
+		<div id="box3"></div>
+		<div id="box4"></div>
+		<script type="text/javascript">
+			var btn=document.getElementById('btn');
+			var box=document.getElementById('box');
+			var box2=document.getElementById('box2');
+			var box3=document.getElementById('box3');
+			var box4=document.getElementById('box4');
+			var divs=box.getElementsByTagName('div');
+			
+			//生成左下角为度的梯形乘法表：
+			var str='';
+			for (var i=0;i<=10;i++) {
+				var itop=(i-1)*32;
+				for (var j=1;j<i;j++) {
+					var ileft=(j-1)*82;
+					str+='<div style="top:'+itop+'px;left:'+ileft+'px; background: yellow;">'+j+'*'+(i-1)+'='+(j*(i-1))+'</div>';
+				}
+			}
+			box.innerHTML=str;
+			
+			
+			//左上角为度的梯形乘法表
+			var str2='';
+			var bnum2=10;
+			for (var i=0;i<=10;i++) {
+				var itop2=bnum2*32;
+				bnum2--;
+				for (var j=1;j<i;j++) {
+					var ileft2=(j-1)*82;
+					//console.log(i)
+					str2+='<div style="top:'+itop2+'px;left:'+ileft2+'px;background: pink;">'+j+'*'+(i-1)+'='+(j*(i-1))+'</div>';
+				}
+			}
+			box2.innerHTML=str2;
+			
+			
+			//右上角为度的梯形乘法表：
+			var str3='';
+			var bnum3=-1;
+			for (var i=10;i>=1;i--) {
+				var itop3=i*32;
+				bnum3++;
+				var bnum31=0
+				for (var j=9;j>=i;j--) {
+					var ileft3=j*82;
+					bnum31++
+					str3+='<div style="top:'+itop3+'px;left:'+ileft3+'px;background: yellowgreen;">'+bnum31+'*'+bnum3+'='+(bnum31*bnum3)+'</div>';
+				}
+			}
+			box3.innerHTML=str3;
+			
+			var str4='';
+			var bnum4=0
+			for (var i=10;i>=1;i--) {
+				var itop4=bnum4*32;
+				bnum4++
+				var bnum41=0;
+				for (var j=9;j>=i;j--) {
+					var ileft4=j*82;
+					bnum41++;
+					str4+='<div style="top:'+itop4+'px;left:'+ileft4+'px;background: greenyellow;">'+bnum41+'*'+(bnum4-1)+'='+(bnum41*(bnum4-1))+'</div>';
+				}
+			}
+			box4.innerHTML=str4;
+		</script>
+	</body>
+</html>

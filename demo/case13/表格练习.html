@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		table{
+			border: 1px solid black;
+		}
+			th,td{
+				border: 1px solid black;
+				font-size: 20px;
+				width: 200px;
+				height: 30px;
+				text-align: center;
+				color: ;
+			}
+			input{
+				margin-bottom: 20px;
+			}
+			.active{
+				background: deeppink;
+			}
+			.yellow{
+				background-color: yellow;
+			}
+			.red{
+				background-color: red;
+			}
+			.hover{
+				background-color:green;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			姓名：<input type='text' value=""  id="name"/>
+			年龄：<input type='text' value=""  id="age"/>
+			性别：<input type='text' value=""  id="sex"/>
+			<input type="button" id="bttn1" value="添加"/><br />
+			排序：<select>
+					<option value="">编号</option>
+					<option value="">年龄</option>
+			</select>
+			<select>
+					<option value="">降序</option>
+					<option value="">升序</option>
+			</select>
+			<input type="button" id="bttn2" value="排序"/><br />
+			搜索：<input type='text' value="" />
+			<input type="submit" id="bttn3" value="搜索"/><br />
+			<input type="button" value="反选"  id="selt"/>
+			<input type="button" value="批量删除" id="shan" />
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>
+						<label>
+							<input type="checkbox" />
+							全选
+						</label>
+					</th>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>1</td>
+					<td>王菲</td>
+					<td>40</td>
+					<td>女</td>
+					<td>
+						<a href="javascript:;">上移</a>
+						|<a href="javascript:;">下移</a>|
+						<a href="javascript:;">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>2</td>
+					<td>王洁</td>
+					<td>40</td>
+					<td>女</td>
+					<td>
+						<a href="javascript:;">上移</a>
+						|<a href="javascript:;">下移</a>|
+						<a href="javascript:;">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>3</td>
+					<td>鹿晗</td>
+					<td>24</td>
+					<td>男</td>
+					<td>
+						<a href="javascript:;">上移</a>
+						|<a href="javascript:;">下移</a>|
+						<a href="javascript:;">删除</a>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>4</td>
+					<td>Carol</td>
+					<td>35</td>
+					<td>女</td>
+					<td>
+						<a href="javascript:;">上移</a>
+						|<a href="javascript:;">下移</a>|
+						<a href="javascript:;">删除</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<script>
+			var tab=document.getElementsByTagName('table')[0];
+			var btn1=document.getElementById('bttn1');
+			var btn2=document.getElementById('bttn2');
+			var btn3=document.getElementById('bttn3');
+			var name1=document.getElementById('name');
+			var age=document.getElementById('age');
+			var sex=document.getElementById('sex');
+			var selt=document.getElementById('selt');
+			var shan=document.getElementById('shan');
+			fn();
+			//添加、删除一行
+				btn1.onclick=function(){
+					var otr=document.createElement('tr');//生成行
+					function fn1(obj){
+						var otd=document.createElement('td');//生成单元格
+						otd.innerHTML=obj;
+						otr.appendChild(otd);
+					}
+					//生成全选单元格
+					fn1('<input type="checkbox" />');
+					//生成数字单元格
+					fn1(tab.tBodies[0].rows.length+1);
+					//生成名字单元格
+					fn1(name1.value);
+					//生成年龄单元格
+					fn1(age.value);
+					//生成性别单元格
+					fn1(sex.value);
+					//生成删除单元格
+					fn1('<a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>');
+					//添加行
+					tab.tBodies[0].appendChild(otr);
+					fn();
+					fn2();
+				}
+				function fn(){
+					for (var i=0;i<tab.tBodies[0].rows.length;i++) {
+						var row=tab.tBodies[0].rows[i]
+						//隔行变色
+						if(i%2){
+							row.className='red';
+						}else{
+							row.className='yellow';
+						}
+						row.color=row.className;
+						//鼠标移入高亮
+						row.onmouseover=function(){
+							this.className='hover';
+						}
+						row.onmouseout=function(){
+							this.className=this.color;
+						}
+						//全选、单选事件
+						var check=tab.tBodies[0].getElementsByTagName('input');
+						check[i].index=i;
+						check[i].onchange=function(){
+							if(this.checked){
+								check[this.index].parentNode.parentNode.style.background='blue';
+							}else{
+								check[this.index].parentNode.parentNode.style.background='';
+							}
+							all.checked=isCheckedAll(check);
+						};
+						//批量删除
+						shan.onclick=function(){
+							for (var i=0;i<tab.tBodies[0].rows.length;i++) {
+								if(check[i].checked){
+									tab.tBodies[0].removeChild(check[i].parentNode.parentNode);
+									//console.log(check[i].parentNode.parentNode);
+									i--;
+									fn();
+								}
+							}
+						};
+					}
+					function isCheckedAll(eles){
+						for(var i=0;i<eles.length;i++){
+							if(!eles[i].checked){
+								return false;
+							}
+						}
+						return true;
+					}
+					//点击全选按钮
+					var all=tab.tHead.getElementsByTagName('input')[0]
+					all.onchange=function(){
+						for (var i=0;i<tab.tBodies[0].rows.length;i++) {
+							check[i].checked=this.checked;
+							if(this.checked){
+								check[i].parentNode.parentNode.style.background='blue';
+							}else{
+								check[i].parentNode.parentNode.style.background='';
+								
+							}
+						}
+					};
+					//反选
+					selt.onclick=function(){
+						//当全部选中时
+						if(all.checked){
+							all.checked=!all.checked;
+						}
+						for (var i=0;i<tab.tBodies[0].rows.length;i++) {
+							//当有选中元素时
+							if(check[i].checked){
+								check[i].parentNode.parentNode.style.background='';
+								check[i].checked=!check[i].checked;
+							}else{
+								
+							}
+						}
+					};
+					
+				}
+				fn2();
+				function fn2(){
+					for (var i=0;i<tab.tBodies[0].rows.length;i++) {
+						var row=tab.tBodies[0].rows[i]
+						var as=row.getElementsByTagName('a');
+							//删除行
+							as[2].onclick=function(){
+								tab.tBodies[0].removeChild(this.parentNode.parentNode)
+								fn();
+							}
+							//上移
+							as[0].onclick=function(){
+								if(this.parentNode.parentNode==tab.tBodies[0].rows[0]){
+									alert('上边没有了')
+								}else{
+									tab.tBodies[0].insertBefore(this.parentNode.parentNode,this.parentNode.parentNode.previousElementSibling)
+									//var oll=this.parentNode.parentNode.cells[1].innerHTML
+									//console.log(oll)
+									//console.log(tab.tBodies[0].rows[this.parentNode.parentNode.cells[1].innerHTML-1])
+								}
+							};
+							//下移
+							as[1].onclick=function(){
+								if(this.parentNode.parentNode==tab.tBodies[0].lastElementChild){
+									alert('下边没有了')
+								}else{
+									tab.tBodies[0].insertBefore(this.parentNode.parentNode.nextElementSibling,this.parentNode.parentNode)
+								}
+							};
+							//排序
+							var num=row.cells[1].innerHTML
+							var selt1=btn2.previousElementSibling.previousElementSibling.innerHTML
+							var selt2=btn2.previousElementSibling.previousElementSibling.children[1].innerHTML
+							console.log(selt1)
+							/*if(selt2=='年龄'){
+								alert(1)
+							}*/
+					}
+				}
+				//搜索高亮
+				btn3.onclick=function(){
+					for (var i=0;i<tab.tBodies[0].rows.length;i++){
+						var row=tab.tBodies[0].rows[i]
+						for (var j=2;j<row.cells.length-1;j++){
+							//toLowerCase()都转换成小写
+							var orw=row.cells[j].innerHTML.toLowerCase();
+							var orw1=this.previousElementSibling.value.toLowerCase();
+							var cell1=tab.tBodies[0].rows[i].cells[j];
+							//每次点击先清除
+							cell1.className='';
+							//当查找到元素时触发的事件
+							//模糊查找
+							var arr=orw1.split(' ');
+							for (var z=0;z<arr.length;z++){
+								if(orw.search(arr[z])!=-1){
+									cell1.className='active';
+								}
+							}
+						}
+					}
+				};
+				
+		</script>
+	</body>
+</html>

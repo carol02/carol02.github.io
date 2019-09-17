@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="cont"/>
+		<input type="button" value="验证"  id="btn"/>
+		<p>只能是数字</p>
+		<p>输入不能有空格（字符有长度）</p>
+		<p>位数5-12位</p>
+		<p>开头不能为0</p>
+		<script type="text/javascript">
+			var btn=document.getElementById('btn');
+			var cont=document.getElementById('cont');
+			btn.onclick=function(){
+				var value=cont.value;
+				for (var i=0;i<value.length;i++) {
+					//输入有空格时（字符有长度）
+					if(value[i]==''){
+						alert('输入有空格请重新输入');
+						return;
+					}else if(isNaN(value[i])){//输入有字母
+						alert('输入有字母请重新输入');
+						return;
+					}
+				}
+				
+				//第一个数字输入为0
+				if(value[0]==0){
+					alert('输入错误请重新输入');
+					return;
+				} else if(value.length>12||value.length<5){//限制qq位数
+					alert('qq格式不对请重新输入');
+					return;
+				}else if(parseFloat(value)!==parseInt(value)){//输入有小数时
+					alert('输入格式不对，请重新输入');
+					return;
+				}
+			}
+		</script>
+	</body>
+</html>

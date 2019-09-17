@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 500px;
+				height: 300px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+			ul{
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				overflow: hidden;
+			}
+			li{
+				width: 100%;
+				height: 100%;
+				list-style: none;
+				overflow: hidden;
+				position: absolute; 
+				left: 0; 
+				top: 0;
+				z-index: 1; 
+				opacity: 1;
+			}
+			img{
+				width: 500px;
+				height: 300px;
+			}
+			#box li.current { 
+				z-index: 10;
+			}
+			#box li.next { 
+				z-index: 5;
+			}
+		</style>
+		<script src="mTween.js"></script>
+		<script src="tween.js" ></script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li class="current">
+					<img src="img/th.jpg"/>
+				</li>
+				<li class="next">
+					<img src="img/th1.jpg"/>
+				</li>
+				<li>
+					<img src="img/th2.jpg"/>
+				</li>
+				<li>
+					<img src="img/th3.jpg"/>
+				</li>
+				<li>
+					<img src="img/th4.jpg"/>
+				</li>
+				<li>
+					<img src="img/th5.jpg"/>
+				</li>
+				<li>
+					<img src="img/th6.jpg"/>
+				</li>
+			</ul>
+		</div>
+		<script>
+			var oBox = document.getElementById('box');
+			var aLi = oBox.getElementsByTagName('li');
+			var disY,disX=0,onOff=true;
+			var n=0;
+			oBox.onmousedown=function(ev){
+				var oEvent=ev||event;
+				disY=oEvent.clientY;
+				disX=oEvent.clientX;
+				//console.log(disY,disX)
+				return false;//清除默认事件
+			}
+			//鼠标滑动控制图片切换
+			oBox.onmouseup=function(ev){
+				var oEvent=ev||event;
+				var x=oEvent.clientX-disX;
+				var y=oEvent.clientY-disY
+				if(Math.abs(x)>Math.abs(y)){//横向切换
+					if(x>0){//从左向右切换
+						mTween(aLi[n],'left',500,300,'linear',fn)
+					}else{//从右向左切换
+						mTween(aLi[n],'left',-500,300,'linear',fn)
+					}
+				}else{//纵向切换
+					if(y>0){//从左向右切换
+						mTween(aLi[n],'top',300,300,'linear',fn)
+					}else{//从右向左切换
+						mTween(aLi[n],'top',-300,300,'linear',fn)
+					}
+				}
+			}
+			//按键控制图片切换
+			document.onkeydown=function(ev){
+				var oEvent=ev||event;
+				//console.log(oEvent.keyCode)
+				if(oEvent.keyCode==38){//向上切换
+					mTween(aLi[n],'top',-300,300,'linear',fn)
+				}else if(oEvent.keyCode==40){//向下切换
+					mTween(aLi[n],'top',300,300,'linear',fn)
+				}else if(oEvent.keyCode==37){//向下切换
+					mTween(aLi[n],'left',-500,300,'linear',fn)
+				}else if(oEvent.keyCode==39){//向下切换
+					mTween(aLi[n],'left',500,300,'linear',fn)
+				}
+			}
+			function fn(){
+				aLi[n].style.cssText='';
+				aLi[n].className='';
+				n++;
+				n%=aLi.length
+				aLi[n].className='current';
+				aLi[(n+1)%aLi.length].className='next';	
+			}
+		</script>
+	</body>
+</html>

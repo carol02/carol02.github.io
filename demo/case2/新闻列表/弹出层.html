@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 500px;
+				height: 300px;
+				margin: 100px auto 0;
+			}
+			p{
+				width: 100px;
+				height: 18px;
+				font-size:18px;
+				font-weight: bold;
+				padding-bottom: -10px;
+			}
+			ul{
+				margin: -10px 0 0;
+				padding: 0;
+				width: 500px;
+				height: 200px;
+				border-top: 1px solid black;
+			}
+			li{
+				width: 60px;
+				height: 90px;
+				list-style: none;
+				float: left;
+				margin: 10px 11px 0;
+				background: url(img/1.jpg) no-repeat;
+				position: relative;
+			}
+			img{
+				position: absolute;
+				top: -120px;
+				left: -10px;
+				display: none;
+				z-index: 10;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p>最新上线</p>
+			<ul></ul>
+		</div>
+		<script type="text/javascript">
+			var uls=document.getElementsByTagName('ul')[0];
+			var arr=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg','img/10.jpg','img/11.jpg','img/12.jpg'];
+			var lis=document.getElementsByTagName('li');
+			
+			//生成li
+			var str='';
+			for (var i=0;i<arr.length;i++) {
+				str+='<li style="background:url('+arr[i]+') no-repeat;"><img src="img/1.png"/></li>';
+			}
+			uls.innerHTML=str;
+			
+			//鼠标移入移出事件
+			var that=null;
+			for (var i=0;i<lis.length;i++) {
+				lis[i].onmouseover=function(){
+					that=this;
+					fn();
+					//this.getElementsByTagName('img')[0].style.display='block';
+				}
+				lis[i].onmouseout=function(){
+					//this指向lis[i]
+					this.getElementsByTagName('img')[0].style.display='none';
+				}
+			}
+			function fn(){
+				//this指向window
+				that.getElementsByTagName('img')[0].style.display='block';
+			}
+		</script>
+	</body>
+</html>

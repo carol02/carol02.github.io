@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="点击生成" />
+		<ul></ul>
+		<script type="text/javascript">
+			var btn=document.getElementById('btn');
+			var uls=document.getElementsByTagName('ul')[0];
+			var arr=['外媒称菲总统10月中旬将访华 中方：望早日成行',
+					'赖德荣被免广西政协副主席职务 此前被降为科员',
+					'揭秘：大名鼎鼎的燕城监狱内部究竟是何模样(图)',
+    				'湖南衡阳“救火书记”李亿龙被捕 曾查破坏选举案',
+   					'沈晓明任教育部党组副书记:儿科医生十年从政路'
+					];
+			var str='';
+
+			btn.onclick=function(){
+				str='';
+				//uls.innerHTML='';
+				for (var i=0;i<arr.length;i++) {
+					str+='<li>'+arr[i]+'</li>';
+					//uls.innerHTML+='<li>'+arr[i]+'</li>';
+				}
+				uls.innerHTML=str;
+			}
+		</script>
+	</body>
+</html>

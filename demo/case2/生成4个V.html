@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: relative;
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				background: red;
+				border: 1px solid black;
+				font-size: 20px;
+				font-family: "微软雅黑";
+				font-weight: bold;
+				text-align: center;
+				color: white;
+				line-height: 50px;
+				position: absolute;
+			}
+			input{
+				width: 200px;
+				height: 30px;
+				font-size: 18px;
+				line-height: 30px;
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="点击生成向上的v字" />
+		<div id="box"></div>
+		<script type="text/javascript">
+			var btn=document.getElementById('btn');
+			var box=document.getElementById('box');
+			var divs=box.getElementsByTagName('div');
+			var arr=['点击生成向上的v字','点击生成向下的v字','点击生成向左的v字','点击生成向右的v字'];
+			var color=['yellow','red','white','#ccc']
+			var str='';
+			var num=0;
+			var len=9;
+			
+			btn.onclick=function(){
+				//控制按钮内容和背景颜色切换
+				num++
+				if(num==arr.length){
+					num=0
+				}
+				btn.value=arr[num];
+				btn.style.background=color[num];
+				
+				//生成v字
+				//box.innerHTML='';
+				str='';
+				if(btn.value==arr[1]){//生成向上
+					for (var i=0;i<len;i++) {
+						if(i<len/2){
+							str+='<div style="left:'+i*55+'px;top:'+i*55+'px">'+(i+1)+'</div>';
+						}else{
+							str+='<div style="left:'+i*55+'px;top:'+(len-i-1)*55+'px">'+(i+1)+'</div>';
+						}
+					}
+				}else if(btn.value==arr[2]){//生成向下
+					for (var i=0;i<len;i++) {
+						if(i<len/2){
+							str+='<div style="left:'+i*55+'px;top:'+(len-i-1)*55+'px">'+(i+1)+'</div>';
+						}else{
+							str+='<div style="left:'+i*55+'px;top:'+i*55+'px">'+(i+1)+'</div>';
+						}
+					}
+				}else if(btn.value==arr[3]){//生成向左
+					for (var i=0;i<len;i++) {
+						if(i<len/2){
+							str+='<div style="left:'+i*55+'px;top:'+i*55+'px">'+(i+1)+'</div>';
+						}else{
+							str+='<div style="left:'+(len-i-1)*55+'px;top:'+i*55+'px">'+(i+1)+'</div>';
+						}
+					}
+				}else{//生成向右
+					for (var i=0;i<len;i++) {
+						if(i<len/2){
+							str+='<div style="left:'+(len-i-1)*55+'px;top:'+i*55+'px">'+(i+1)+'</div>';
+						}else{
+							str+='<div style="left:'+i*55+'px;top:'+i*55+'px">'+(i+1)+'</div>';
+						}
+					}
+				}
+				box.innerHTML=str;
+			}
+			
+		</script>
+	</body>
+</html>
